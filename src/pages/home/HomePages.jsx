@@ -19,7 +19,7 @@ const HomePages = () => {
           <p className="text-[#475156] text-[18px] max-[600px]:text-[14px] mt-5 max-[600px]:mt-0 ">
             Save up to 50% on select Xbox games. Get <br /> 3 months of PC Game Pass for $2 USD.
           </p>
-          <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
+          <button className="mt-4 px-6 cursor-pointer py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
             Shop Now <FaArrowRight />
          </button>
        </div>
@@ -38,7 +38,7 @@ const HomePages = () => {
             <div className='z-10'>
                 <h1 className='text-[#EBC80C] font-500 text-[14px] max-[600px]:text-[10px] '>Summer Sales</h1>
                 <h2 className='text-white font-600 text-[24px] mt-3 max-[600px]:text-[20px] '>New Google <br /> Pixel 6 Pro</h2>
-                <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
+                <button className="mt-4 cursor-pointer px-6 py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
                     Shop Now <FaArrowRight />
                 </button>
                 <p className='w-[102px] h-[40px] max-[600px]:w-[70px] max-[600px]:h-[20px] max-[600px]:text-[12px] rounded-[2px] bg-[#EFD33D] flex items-center justify-center font-bold absolute top-10 max-[600px]:top-5 right-10 '>29% OFF</p>
@@ -51,7 +51,7 @@ const HomePages = () => {
             <div>
                 <h1 className='text-[24px] font-bold max-[600px]:text-[20px] '>Xiaomi FlipBuds Pro</h1>
                 <p>$299 USD</p>
-                <button className="mt-4 px-6 py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
+                <button className="mt-4 cursor-pointer px-6 py-2 bg-orange-500 text-white rounded flex items-center gap-2 cursor-pointer">
                     Shop Now <FaArrowRight />
                 </button>
             </div>
@@ -133,7 +133,7 @@ const HomePages = () => {
             </div>
            <div className='flex items-center gap-2 max-w-[175px] w-full h-[48px] rounded-[5px] bg-[#FA8232] flex items-center justify-center text-white cursor-pointer '>
              <SlBasket  className='w-[25px] h-[25px]'/>
-             <h1 className='font-bold text-[16px] '>Add To Card</h1>
+             <h1 className='font-bold text-[16px] cursor-pointer'>Add To Card</h1>
            </div>
            <div className='w-[48px] h-[48px] rounded-[5px] bg-[#FFE7D6] flex items-center justify-center '>
               <MdOutlineRemoveRedEye className='w-[25px] h-[25px] '/>
@@ -485,7 +485,7 @@ const HomePages = () => {
           </h2>
         </div>
 
-        <button className="bg-[#FA8232] text-white font-bold w-[190px] h-[56px] rounded mt-7 mx-auto flex items-center justify-center gap-2">
+        <button className="bg-[#FA8232] cursor-pointer text-white font-bold w-[190px] h-[56px] rounded mt-7 mx-auto flex items-center justify-center gap-2">
           Shop now <FaArrowRight />
         </button>
 
@@ -781,7 +781,7 @@ const HomePages = () => {
             <h1 className="text-xl font-bold bg-[#2DA5F3] w-[150px] h-[35px] text-white flex items-center justify-center ">INTRODUCING</h1>
             <h1 className="text-[32px] leading-[40px] font-bold">New Apple HomePod Mini</h1>
             <p className="text-[#475156] text-[16px] ">Jam-packed with innovation, <br /> HomePod mini delivers unexpectedly. </p>
-           <button className="flex items-center justify-center max-w-[160px] w-full h-[50px] gap-2 text-[14px] bg-[#FA8232] font-bold text-white ">    SHOP NOW <FaArrowRight /> </button>
+           <button className="flex items-center justify-center cursor-pointer max-w-[160px] w-full h-[50px] gap-2 text-[14px] bg-[#FA8232] font-bold text-white ">    SHOP NOW <FaArrowRight /> </button>
        </div>
           <img src="Apple.png" alt="Apple Homepod Mini" className="w-1/2 object-contain w-[240px] h-[240px]" />
     </div>
@@ -791,7 +791,7 @@ const HomePages = () => {
     <h1 className='bg-[#EFD33D] w-[165px] h-[32px] rounded-[2px] font-bold flex items-center justify-center'>INTRODUCING NEW</h1>
     <h2 className='text-[32px] leading-[40px] text-white font-bold'>Xiaomi Mi 11 Ultra 12GB+256GB</h2>
     <p className='text-[#ADB7BC] font-bold text-[16px] mt-2'>*Data provided by internal <br /> laboratories. Industry measurment.</p>
-    <button className="flex items-center justify-center max-w-[160px] w-full h-[50px] gap-2 text-[14px] bg-[#FA8232] font-bold text-white">
+    <button className="flex items-center justify-center cursor-pointer max-w-[160px] w-full h-[50px] gap-2 text-[14px] bg-[#FA8232] font-bold text-white">
       SHOP NOW <FaArrowRight />
     </button>
   </div>
@@ -804,6 +804,72 @@ const HomePages = () => {
 
    </div>
 </section>
+
+
+<section>
+  <div className='container mx-auto py-[60px] max-w-[1400px] w-full '>
+    <div className="flex items-center justify-between mb-6">
+      <h1 className="text-[24px] font-bold">Computer Accessories</h1>
+      <div className="flex items-center gap-6 text-[14px]">
+        <span className="border-b-2 border-red-500 pb-1 font-semibold cursor-pointer">All Product</span>
+        <span className="cursor-pointer text-[#5F6C72]">Smart Phone</span>
+        <span className="cursor-pointer text-[#5F6C72]">Laptop</span>
+        <span className="cursor-pointer text-[#5F6C72]">Headphone</span>
+        <span className="cursor-pointer text-[#5F6C72]">TV</span>
+        <span className="flex items-center gap-1 text-[#FA8232] font-bold cursor-pointer ml-4">
+          Browse All Product <FaArrowRight />
+        </span>
+      </div>
+    </div>
+
+    <div className="flex gap-6 ">
+      <div className="flex-1 grid grid-cols-4 gap-3 mt-5">
+        {[...Array(8)].map((_, i) => (
+          <div key={i} className="relative border rounded-md p-4 group overflow-hidden">
+            <img src="tel2.png" alt="" className="w-full h-[180px] object-contain" />
+            <div className="absolute inset-0 flex items-center justify-center gap-3 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow"><FaRegHeart /></div>
+              <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow"><SlBasket /></div>
+              <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow"><MdOutlineRemoveRedEye /></div>
+            </div>
+            <p className="absolute top-3 left-3 w-[60px] h-[30px] text-white text-sm font-bold bg-[#EE5858] flex items-center justify-center rounded">HOT</p>
+            <div className="flex items-center gap-2 text-orange-400 mt-3">
+              <FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar /><FaRegStar />
+              <span className="text-gray-400 text-sm">(738)</span>
+            </div>
+            <p className="text-[14px] font-bold mt-2">TOZO T6 True Wireless <br /> Earbuds Bluetooth Headphon...</p>
+            <p className="text-[#2DA5F3] font-bold mt-2">$2,300</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="flex flex-col gap-4 w-[320px] shrink-0 mt-5">
+        <div className='bg-[#F7E99E] h-[430px] rounded-md p-4 flex flex-col items-center justify-between'>
+          <img className='w-[108px] h-[108px]' src="airpods.png" alt="" />
+          <h1 className='text-center text-[28px] font-bold'>Xiaomi True <br /> Wireless Earbuds</h1>
+          <p className='text-center text-[16px] text-[#475156]'>Escape the noise, It’s time to hear <br /> the magic with Xiaomi Earbuds.</p>
+          <div className='flex  items-center justify-center gap-2 w-full'>
+            <h1 className='font-bold'>Only for:</h1>
+            <h2 className='font-bold text-[16px] w-[101px] h-[36px] rounded-[3px] bg-[white] font-bold flex items-center justify-center '>$299 USD</h2>
+          </div>
+          <button className="flex items-center justify-center w-full cursor-pointer max-w-[248px] h-[50px] gap-2 text-[14px] bg-[#FA8232] font-bold text-white rounded">
+              SHOP NOW <FaArrowRight />
+            </button>
+        </div>
+
+        <div className='bg-[#124261] h-[260px] rounded-md p-4 flex flex-col items-center justify-between text-white'>
+          <h1 className='text-[14px] font-bold bg-[#FFFFFF1F] w-[137px] h-[32px] flex items-center justify-center '>SUMMER SALES</h1>
+          <h2 className='text-[32px] font-bold'>37% DISCOUNT</h2>
+          <p className='text-[18px] font-bold text-center'>only for SmartPhone product.</p>
+          <button className="flex items-center justify-center w-full max-w-[248px] cursor-pointer h-[50px] gap-2 text-[14px] bg-[#2DA5F3] font-bold text-white rounded">
+            SHOP NOW <FaArrowRight />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     </>
   );
 };
