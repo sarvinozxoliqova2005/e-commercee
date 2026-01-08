@@ -175,37 +175,35 @@ const HomePages = () => {
         </div>
          </div> */}
 
-         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-x-5 gap-y-5'>
-  {
-  famousProducts?.map((el) => (
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mt-10 gap-x-5 gap-y-5 justify-center overflow-x-hidden'>
+  {famousProducts?.map((el) => (
     <div
       key={el.id}
-      className="relative max-w-[360px] w-full h-[355px] border-2 shadow-2xl  rounded-md group overflow-hidden"
+      className="relative w-full max-w-[360px] max-[600px]:max-w-[300px] h-[355px] max-[600px]:h-[300px] border-2 shadow-2xl rounded-md group overflow-hidden mx-auto"
     >
       <img
-        className="w-full max-w-[180px] h-[180px] pt-6 object-cover mx-auto"
+        className="w-[150px] h-[150px] sm:w-[160px] sm:h-[160px] md:w-[180px] md:h-[180px] pt-6 object-cover mx-auto"
         src={el.thumbnail}
         alt={el.title}
       />
 
-      <h1 className="text-[24px] text-center font-bold mt-2 px-2">
+      <h1 className="text-[20px] sm:text-[22px] md:text-[24px] text-center font-bold mt-2 px-2">
         {el.title}
       </h1>
 
-      <p className="text-[20px] mt-2 text-center text-gray-500 px-2 line-clamp-2 italic">
+      <p className="text-[14px] sm:text-[16px] md:text-[20px] mt-2 text-center text-gray-500 px-2 line-clamp-2 italic">
         {el.description}
       </p>
 
       <div className='flex items-center justify-between px-5 mt-3'>
-        <p className='text-yellow-500 text-[24px] font-bold'>{el.rating}</p>
-
-      <p className="text-[#2DA5F3] font-bold text-[24px] px-2">
-        ${el.price}
-      </p>
+        <p className='text-yellow-500 text-[20px] sm:text-[22px] md:text-[24px] font-bold'>{el.rating}</p>
+        <p className="text-[#2DA5F3] font-bold text-[20px] sm:text-[22px] md:text-[24px] px-2">
+          ${el.price}
+        </p>
       </div>
 
-      <p className="absolute top-3 right-3 font-bold text-[18px] bg-[#EFD33D]
-                     w-[80px] h-[30px] rounded-[5px]
+      <p className="absolute top-3 right-3 font-bold text-[14px] sm:text-[16px] md:text-[18px] bg-[#EFD33D]
+                     w-[60px] sm:w-[70px] md:w-[80px] h-[25px] sm:h-[28px] md:h-[30px] rounded-[5px]
                      flex items-center justify-center">
         {el.discountPercentage} %
       </p>
@@ -215,22 +213,22 @@ const HomePages = () => {
                    bg-black/30 opacity-0 group-hover:opacity-100
                    transition-opacity duration-300"
       >
-        <div className="w-[44px] h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
+        <div className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
           <FaRegHeart />
         </div>
 
-        <div className="w-[44px] h-[44px] bg-white cursor-pointer rounded-full flex items-center justify-center shadow">
+        <div className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] bg-white cursor-pointer rounded-full flex items-center justify-center shadow">
           <SlBasket />
         </div>
 
-        <Link to={`/products/${el.id}`} className="w-[44px] h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
+        <Link to={`/products/${el.id}`} className="w-[40px] h-[40px] sm:w-[44px] sm:h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
           <MdOutlineRemoveRedEye />
         </Link>
       </div>
     </div>
-  ))
-}
-           </div>
+  ))}
+</div>
+
          </div>
   </section>
 
