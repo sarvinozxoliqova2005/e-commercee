@@ -4,11 +4,11 @@ import { FaInstagram } from "react-icons/fa";
 import { FiSearch, FiHeart, FiUser } from "react-icons/fi";
 import { IoGitCompareOutline } from "react-icons/io5";
 import { SlBasket, SlSocialTwitter, SlSocialYoutube } from "react-icons/sl";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Top bar */}
       <div className="bg-[#1B6392] text-white text-sm py-2 px-4 border-b border-green-700">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-center justify-between  gap-2 sm:gap-0">
           <div className="text-center sm:text-left">
@@ -33,10 +33,9 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Middle bar (logo + search + icons) */}
       <div className="bg-[#1B6392]">
         <div className="max-w-[1400px] mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <h1 className="text-white text-2xl font-bold text-center sm:text-left">CLICON</h1>
+          <NavLink to={"/"} className="text-white text-2xl font-bold text-center sm:text-left">CLICON</NavLink>
 
           <div className="flex flex-1 w-full sm:w-auto bg-white rounded overflow-hidden">
             <input
@@ -49,16 +48,23 @@ const Header = () => {
             </button>
           </div>
 
-          <div className="flex items-center gap-5 text-white text-xl">
-            <SlBasket />
-            <FiHeart />
-            <FiUser />
+          <div className="relative flex items-center gap-5 text-white text-xl ">
+           <NavLink to={"/cart"}> 
+            <SlBasket className="text-[32px] "/> <span className="absolute bottom-4 bg-blue-500 w-[25px] h-[25px] flex items-center justify-center rounded-full right-22">0</span>
+           </NavLink>
+
+            <NavLink to={"/likee"}>
+              <FiHeart className="text-[32px]" />
+            </NavLink>
+            
+            <NavLink to={"/register"}>
+              <FiUser className="text-[32px]" />
+            </NavLink>
           </div>
         </div>
       </div>
 
-      {/* Bottom nav bar */}
-      <div className="bg-white">
+      {/* <div className="bg-white">
         <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row justify-between items-center px-4 py-3 gap-2 sm:gap-0 text-sm">
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
             <a className="w-[155px] h-[48px] bg-[#F2F4F5] flex items-center justify-center" href="">
@@ -82,7 +88,7 @@ const Header = () => {
             📞 +1-202-555-0104
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 };

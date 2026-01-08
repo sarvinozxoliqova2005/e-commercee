@@ -5,13 +5,44 @@ import { FiBox } from 'react-icons/fi';
 import { IoStarOutline } from 'react-icons/io5';
 import { MdOutlinePayment, MdOutlineRemoveRedEye } from 'react-icons/md';
 import { SlBasket } from 'react-icons/sl';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import useGet from '../../hooks/useGet';
 
 const HomePages = () => {
+  const {loading , data} =  useGet({url:"products"})
+  let products = data?.data?.products;
+  let famousProducts = products?.slice(products?.length - 26 , products.length-18)
+ if (loading) {
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        zIndex: 99999,
+        backgroundColor: "#fff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <img
+        src="https://cdn.dribbble.com/userupload/22768185/file/original-828abbdb6d63e8e7726ddb64d40a0cc1.gif"
+        alt="Loading"
+        style={{ width: "100%" , height:"100%" }}
+      />
+    </div>
+  );
+}
+
+
+
   return (
     <>
      <section>
-  <div className="container mx-auto pt-[200px] max-w-[1400px] w-full px-4 rounded gap-20 flex items-center justify-between max-[600px]:flex-col ">
+  <div className="container mx-auto pt-[100px] max-w-[1400px] w-full px-4 rounded gap-20 flex items-center justify-between max-[600px]:flex-col ">
     <div className="relative max-w-[900px] max-[600px]:max-w-[700px] max-[600px]:h-[400px] w-full h-[520px] rounded-[6px] bg-[#F2F4F5]  px-10 flex items-center gap-10">
        <div className="text-center">
           <h1 className="text-[#2484C2] max-[600px]:text-[14px] font-semibold">-THE BEST PLACE TO PLAY</h1>
@@ -108,11 +139,10 @@ const HomePages = () => {
          <h2 className='text-[#000000] text-[14px] '>Deals ends in</h2>
          <p className='w-[186px] h-[36px] bg-[#F3DE6D] rounded-[2px] flex items-center justify-center font-bold '>16d : 21h : 57m : 23s</p>
        </div>
-       <h1 className='flex items-center gap-2 text-[#2DA5F3] max-[600px]:mt-3 text-[14px] font-bold '>Browse All Product <FaArrowRight /></h1>
+       <NavLink to={"/products"} className='flex items-center gap-2 text-[#2DA5F3] max-[600px]:mt-3 text-[14px] font-bold '>Browse All Product <FaArrowRight /></NavLink>
       </div>
 
-    <div className='flex flex-col lg:flex-row items-center lg:items-start gap-12'>
-          <div className='relative lg:max-w-[450px] w-full h-[570px] border-2 border-gray-200 mt-6'>
+          {/* <div className='relative lg:max-w-[450px] w-full h-[570px] border-2 border-gray-200 mt-6'>
         <img className='w-[280px] h-[268px] ml-40 ' src="rasm1.png" alt="" />
         <NavLink className='flex items-center gap-2 ml-7 mt-3'>
         <IoStarOutline />
@@ -143,291 +173,71 @@ const HomePages = () => {
             <h1 className='w-[75px] h-[26px] rounded-[5px] font-bold text-[14px] bg-[#EFD33D] flex items-center justify-center '>32% OFF</h1>
             <h2 className='bg-[#EE5858] w-[46px] h-[26px] text-white font-bold rounded-[5px] flex items-center justify-center mt-2'>HOT</h2>
         </div>
-         </div>
+         </div> */}
 
-         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-            <div className="flex flex-col gap-4 mt-5">
-  <div className="relative max-w-[260px] w-full h-[275px] border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480 <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
+         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-10 gap-x-5 gap-y-5'>
+  {
+  famousProducts?.map((el) => (
+    <div
+      key={el.id}
+      className="relative max-w-[360px] w-full h-[355px] border-2 shadow-2xl  rounded-md group overflow-hidden"
+    >
+      <img
+        className="w-full max-w-[180px] h-[180px] pt-6 object-cover mx-auto"
+        src={el.thumbnail}
+        alt={el.title}
+      />
 
-   <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
+      <h1 className="text-[24px] text-center font-bold mt-2 px-2">
+        {el.title}
+      </h1>
 
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
+      <p className="text-[20px] mt-2 text-center text-gray-500 px-2 line-clamp-2 italic">
+        {el.description}
+      </p>
 
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
+      <div className='flex items-center justify-between px-5 mt-3'>
+        <p className='text-yellow-500 text-[24px] font-bold'>{el.rating}</p>
+
+      <p className="text-[#2DA5F3] font-bold text-[24px] px-2">
+        ${el.price}
+      </p>
+      </div>
+
+      <p className="absolute top-3 right-3 font-bold text-[18px] bg-[#EFD33D]
+                     w-[80px] h-[30px] rounded-[5px]
+                     flex items-center justify-center">
+        {el.discountPercentage} %
+      </p>
+
+      <div
+        className="absolute inset-0 flex items-center justify-center gap-3
+                   bg-black/30 opacity-0 group-hover:opacity-100
+                   transition-opacity duration-300"
+      >
+        <div className="w-[44px] h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
+          <FaRegHeart />
+        </div>
+
+        <div className="w-[44px] h-[44px] bg-white cursor-pointer rounded-full flex items-center justify-center shadow">
+          <SlBasket />
+        </div>
+
+        <Link to={`/products/${el.id}`} className="w-[44px] h-[44px] bg-[#FA8232] cursor-pointer text-white rounded-full flex items-center justify-center shadow">
+          <MdOutlineRemoveRedEye />
+        </Link>
+      </div>
     </div>
-  </div>
-  </div>
+  ))
+}
            </div>
-
-           <div className="relative max-w-[260px]  w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-<div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-    <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-    <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-   <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-    <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-
-    <div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
-
-  <div className="relative max-w-[260px] w-full h-[275px] mt-5 border-2 border-gray-200 group overflow-hidden">
-    <img
-      className="w-full max-w-[200px] h-[185px] object-cover mx-auto"
-      src="tel2.png"
-      alt="Dell Monitor"
-    />
-    <h1 className="text-[#191C1F] text-[14px] px-4 mt-2">
-      Dell Optiplex 7000x7480  <br /> All-in-One Computer Monitor
-    </h1>
-    <div className="flex items-center gap-2 ml-4 mt-1">
-      <p className="line-through text-gray-400 text-[16px] font-bold">$2000</p>
-      <p className="text-[#2DA5F3] text-[18px] font-bold">$1650</p>
-    </div>
-    <p className="absolute top-3 right-3 font-bold text-[16px] bg-[#EFD33D] w-[80px] h-[30px] rounded-[5px] flex items-center justify-center">
-      %19 OFF
-    </p>
-<div className="absolute inset-0 flex items-center justify-center gap-3
-                  bg-black/30 opacity-0 group-hover:opacity-100
-                  transition-opacity duration-300">
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <FaRegHeart />
-    </div>
-    <div className="w-[44px] h-[44px] bg-white rounded-full flex items-center justify-center shadow">
-      <SlBasket />
-    </div>
-
-    <div className="w-[44px] h-[44px] bg-[#FA8232] text-white rounded-full flex items-center justify-center shadow">
-      <MdOutlineRemoveRedEye />
-    </div>
-  </div>
-  </div>
          </div>
-</div>
-</div>
   </section>
 
   <section>
     <div className='container mx-auto pt-[90px] max-w-[1400px] w-full '>
         <h1 className='text-center text-[32px] font-bold '>Shop with Categorys</h1>
-        <div className='grid grid-cols-6 mt-10 gap-10'>
+        <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mt-10 gap-10'>
             <div className='border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] '>
             <img className='w-[148px] h-[148px] ml-10 mt-7' src="SmartPhone.png" alt="" />
             <h1 className='text-[24px] font-bold text-center mt-3'>SmartPhone</h1>
