@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { AiOutlineCustomerService } from "react-icons/ai";
 import { CiFacebook, CiLocationOn } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
@@ -5,8 +6,10 @@ import { FiSearch, FiHeart, FiUser } from "react-icons/fi";
 import { IoGitCompareOutline } from "react-icons/io5";
 import { SlBasket, SlSocialTwitter, SlSocialYoutube } from "react-icons/sl";
 import { NavLink } from "react-router-dom";
+import { LikeProductContext } from "../context/LikeContext";
 
 const Header = () => {
+  const {like} = useContext(LikeProductContext);
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="bg-[#1B6392] text-white text-sm py-2 px-4 border-b border-green-700">
@@ -48,16 +51,16 @@ const Header = () => {
             </button>
           </div>
 
-          <div className="relative flex items-center gap-5 text-white text-xl ">
-           <NavLink to={"/cart"}> 
+          <div className="relative hidden sm:flex items-center gap-5 text-white text-xl ">
+           <NavLink className="hidden md:block" to={"/cart"}> 
             <SlBasket className="text-[32px] "/> <span className="absolute bottom-4 bg-blue-500 w-[25px] h-[25px] flex items-center justify-center rounded-full right-22">0</span>
            </NavLink>
 
-            <NavLink to={"/likee"}>
-              <FiHeart className="text-[32px]" />
+            <NavLink className="relative hidden md:block" to={"/likee"}>
+              <FiHeart className="text-[32px]" /> <span className="absolute bottom-4 bg-red-500 w-[25px] h-[25px] flex items-center justify-center rounded-full right-[-20px]">{like.length}</span>
             </NavLink>
             
-            <NavLink to={"/register"}>
+            <NavLink className="hidden md:block" to={"/register"}>
               <FiUser className="text-[32px]" />
             </NavLink>
           </div>
