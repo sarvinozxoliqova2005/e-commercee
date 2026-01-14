@@ -36,7 +36,7 @@ const PhonesFilter = ({el}) => {
                   onClick={() => removeToLike(el)}
                   className="w-[36px] h-[36px] text-[20px]
                          text-red-500 bg-white
-                         rounded-full flex items-center justify-center shadow"
+                         rounded-full flex items-center justify-center shadow cursor-pointer"
                 >
                   <FaHeart />
                 </button>
@@ -45,7 +45,7 @@ const PhonesFilter = ({el}) => {
                   onClick={() => addToLike(el)}
                   className="w-[36px] h-[36px] text-[20px]
                          text-red-500 bg-white
-                         rounded-full flex items-center justify-center shadow"
+                         rounded-full flex items-center justify-center shadow cursor-pointer"
                 >
                   <FaRegHeart />
                 </button>
@@ -55,13 +55,13 @@ const PhonesFilter = ({el}) => {
               cart.find((item) => item.id === el.id) ? <button
               onClick={() => removeToCart(el)}
                 className="w-[36px] h-[36px] bg-white cursor-pointer
-                          rounded-full flex items-center justify-center shadow"
+                          rounded-full flex items-center justify-center shadow "
               >
                 <BsCartDashFill />
               </button> :  <button
               onClick={() => addToCart(el)}
                 className="w-[36px] h-[36px] bg-white cursor-pointer
-                          rounded-full flex items-center justify-center shadow"
+                          rounded-full flex items-center justify-center shadow "
               >
                 <FaCartPlus />
               </button>
