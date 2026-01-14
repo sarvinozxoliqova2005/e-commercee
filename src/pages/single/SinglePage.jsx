@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import useGet from "../../hooks/useGet";
 import SwiperCard from "../../components/SwiperCard";
 import { IoIosStar, IoMdStar } from "react-icons/io";
 import { FaShoppingCart } from "react-icons/fa";
+import { CartContextCard } from "../../hooks/CartContext";
 
 const SinglePage = () => {
   const { id } = useParams("id");
   const { data, loading } = useGet({ url: `products/${id}` });
   const item = data.data;
-  console.log(item);
-
   const [count, setCount] = useState(0);
+  const {cart , addToCart , increase , decrease} = useContext (CartContextCard); 
 
-  function increase() {
-    setCount((prev) => prev + 1);
-  }
+  // function increase() {
+  //   setCount((prev) => prev + 1);
+  // }
 
-  function decrease() {
-    if (count > 0) {
-      setCount((prev) => prev - 1);
-    } else {
-      setCount((prev) => prev - 0);
-    }
-  }
+  // function decrease() {
+  //   if (count > 0) {
+  //     setCount((prev) => prev - 1);
+  //   } else {
+  //     setCount((prev) => prev - 0);
+  //   }
+  // }
 
   if (loading) {
     return (
@@ -93,26 +93,35 @@ const SinglePage = () => {
         </div>
 
         <div className="flex items-center justify-center gap-2 mt-5">
-          <div className="flex items-center justify-center gap-5 w-[165px] h-[60px] border-[2px] border-[#E4E7E9] rounded-[3px] ">
+          {
+            cart.find((el) => el.id === item.id) ?   <div className="flex items-center justify-center gap-5 w-full h-full h-[60px] border-[2px] border-[#E4E7E9] rounded-[3px] ">
             <button
-              onClick={() => decrease()}
-              className="text-[24px] font-bold cursor-pointer"
+              onClick={() => decrease(item)}
+              className="text-[24px] font-bold cursor-pointer text-white bg-[red] w-full py-[10px]"
             >
               -
             </button>
-            <span className="text-[20px] font-bold">{count}</span>
+            <span className="text-[20px] font-bold py-[10px]">
+              {
+                cart?.find((el) => el.id === item.id).qty
+              }
+              </span>
             <button
-              onClick={() => increase()}
-              className="text-[24px] font-bold cursor-pointer"
+              onClick={() => increase(item)}
+              className="text-[24px] font-bold cursor-pointer w-full text-white py-[10px] bg-[green]"
             >
               +
             </button>
-          </div>
-          <button className="flex items-center justify-center gap-2 w-[310px] h-[56px] text-white bg-[#FA8232] cursor-pointer rounded-[3px] text-[24px] font-bold ">
+          </div> :  <button
+          onClick={() => addToCart(item)}
+           className="flex items-center justify-center gap-2 w-full py-[10px] text-white bg-[#FA8232] cursor-pointer rounded-[3px] text-[24px] font-bold ">
             Add to card
             <FaShoppingCart />
           </button>
-          <button className="w-[142px] h-[56px] border-[2px] border-[#FA8232] text-[#FA8232] font-bold text-[24px] rounded-[3px] ">
+          }
+         
+         
+          <button className="w-full h-[56px] border-[2px] border-[#FA8232] text-[#FA8232] font-bold text-[24px] rounded-[3px] ">
             BUY NOW
           </button>
         </div>

@@ -8,6 +8,10 @@ import { SlBasket } from "react-icons/sl";
 import { Link, NavLink } from "react-router-dom";
 import useGet from "../../hooks/useGet";
 import ProductsCard from "../../components/ProductsCard";
+import BigCard from "../../components/BigCard";
+import PhoneCard from "../../components/PhoneCard";
+import SmartPhone from "../../components/SmartPhone";
+import PhonesFilter from "../../components/PhonesFilter";
 
 const HomePages = () => {
   const { loading, data } = useGet({ url: "products" });
@@ -16,6 +20,17 @@ const HomePages = () => {
     products?.length - 26,
     products.length - 18
   );
+
+  const smartPhones = products?.slice(
+    products.length - 12,
+    products.length - 6
+  );
+
+  const phonesfilter= products?.slice(
+    products?.length - 30, products.length - 22
+  )
+
+  const bigCards = products?.slice(-1);
   if (loading) {
     return (
       <div
@@ -187,56 +202,9 @@ const HomePages = () => {
           </div>
 
           <div className="flex flex-col lg:flex-row justify-center gap-5 ">
-            <div className="relative max-w-[350px] w-full h-[640px] border-2 border-gray-400 mt-6 mx-auto lg:mx-0">
-              <img
-                className="max-w-[300px] w-full h-[220px] sm:h-[260px] md:h-[230px] ml-20 object-contain "
-                src="rasm1.png"
-                alt=""
-              />
-              <NavLink className="flex items-center gap-2 ml-7 mt-3">
-                <IoStarOutline />
-                <IoStarOutline />
-                <IoStarOutline />
-                <IoStarOutline />
-                <IoStarOutline />
-              </NavLink>
-              <h1 className="text-[24px] mt-3 ml-4 ">
-                Xbox Series S - 512GB SSD Console <br /> with Wireless
-                Controller - EU Versio...
-              </h1>
-              <div className="flex items-center gap-2 mt-3 ml-7">
-                <b className="line-through text-[#ADB7BC] ">$865.99</b>
-                <h1 className="text-[#2DA5F3] text-[20px] font-bold ">
-                  $442.12
-                </h1>
-              </div>
-              <p className=" text-[#5F6C72] text-[14px] leading-[20px] mt-3 ml-7">
-                Games built using the Xbox Series X|S development kit showcase
-                unparalleled load times, visuals.
-              </p>
-              <div className="flex items-center justify-center gap-3 mt-10 mx-auto">
-                <div className="rounded-[5px] bg-[#FFE7D6] w-[48px] h-[48px] flex items-center justify-center">
-                  <FaRegHeart className="w-[25px] h-[25px] " />
-                </div>
-                <div className="flex items-center gap-2 max-w-[175px] w-full h-[48px] rounded-[5px] bg-[#FA8232] flex items-center justify-center text-white cursor-pointer ">
-                  <SlBasket className="w-[25px] h-[25px]" />
-                  <h1 className="font-bold text-[16px] cursor-pointer">
-                    Add To Card
-                  </h1>
-                </div>
-                <div className="w-[48px] h-[48px] rounded-[5px] bg-[#FFE7D6] flex items-center justify-center ">
-                  <MdOutlineRemoveRedEye className="w-[25px] h-[25px] " />
-                </div>
-              </div>
-              <div className="absolute top-0 mt-5 ml-5 ">
-                <h1 className="w-[75px] h-[26px] rounded-[5px] font-bold text-[14px] bg-[#EFD33D] flex items-center justify-center ">
-                  32% OFF
-                </h1>
-                <h2 className="bg-[#EE5858] w-[46px] h-[26px] text-white font-bold rounded-[5px] flex items-center justify-center mt-2">
-                  HOT
-                </h2>
-              </div>
-            </div>
+            {bigCards?.map((el) => (
+              <BigCard el={el} key={el.id} />
+            ))}
 
             <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 mt-10 gap-x-3 gap-y-3  justify-center ">
               {famousProducts?.map((el) => (
@@ -253,71 +221,9 @@ const HomePages = () => {
             Shop with Categorys
           </h1>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mt-10 gap-10">
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
-
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
-
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
-
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
-
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
-
-            <div className="border-2 border-gray-200 w-[225px] h-[250px] rounded-[5px] ">
-              <img
-                className="w-[148px] h-[148px] ml-10 mt-7"
-                src="SmartPhone.png"
-                alt=""
-              />
-              <h1 className="text-[24px] font-bold text-center mt-3">
-                SmartPhone
-              </h1>
-            </div>
+            {smartPhones.map((el) => (
+              <SmartPhone key={el.id} el={el} />
+            ))}
           </div>
         </div>
       </section>
@@ -359,27 +265,18 @@ const HomePages = () => {
               <div className="flex items-center justify-between mb-6">
                 <h1 className="text-[24px] font-bold">Featured Products</h1>
 
-                <div className="flex items-center gap-6 text-[14px]">
-                  <span className="border-b-2 border-red-500 pb-1 font-semibold cursor-pointer">
-                    All Product
-                  </span>
-                  <span className="cursor-pointer text-[#5F6C72]">
-                    Smart Phone
-                  </span>
-                  <span className="cursor-pointer text-[#5F6C72]">Laptop</span>
-                  <span className="cursor-pointer text-[#5F6C72]">
-                    Headphone
-                  </span>
-                  <span className="cursor-pointer text-[#5F6C72]">TV</span>
-
-                  <span className="flex items-center gap-1 text-[#FA8232] font-bold cursor-pointer ml-4">
-                    Browse All Product <FaArrowRight />
-                  </span>
-                </div>
+                <PhoneCard />
               </div>
 
-              <div className="grid grid-cols-4 gap-6">
-                <div className="relative border rounded-md p-4 group overflow-hidden">
+              <div className="grid grid-cols-4 gap-4">
+               {
+                phonesfilter.map((el) => (
+                  <div >
+                    <PhonesFilter el={el} key={el.id}/>
+                  </div>
+                ))
+               }
+                {/* <div className="relative border rounded-md p-4 group overflow-hidden">
                   <img
                     src="tel2.png"
                     alt=""
@@ -421,9 +318,9 @@ const HomePages = () => {
                   </p>
 
                   <p className="text-[#2DA5F3] font-bold mt-2">$2,300</p>
-                </div>
+                </div> */}
 
-                <div className="border rounded-md p-4 group relative group overflow-hidden">
+                {/* <div className="border rounded-md p-4 group relative group overflow-hidden">
                   <img
                     src="tel2.png"
                     alt=""
@@ -693,7 +590,7 @@ const HomePages = () => {
                   <p className="absolute top-3 w-[60px] h-[30px] text-white font-bold bg-[#2DB224] flex items-center justify-center ">
                     Sale
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
