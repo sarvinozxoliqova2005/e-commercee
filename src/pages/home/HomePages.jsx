@@ -218,7 +218,7 @@ const HomePages = () => {
       <section>
         <div className="container mx-auto pt-[90px] max-w-[1400px] w-full ">
           <h1 className="text-center text-[32px] font-bold ">
-            Shop with Categorys
+            Shop with Products
           </h1>
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mt-10 gap-10">
             {smartPhones.map((el) => (
