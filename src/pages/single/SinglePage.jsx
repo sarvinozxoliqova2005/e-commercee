@@ -10,7 +10,6 @@ const SinglePage = () => {
   const { id } = useParams("id");
   const { data, loading } = useGet({ url: `products/${id}` });
   const item = data.data;
-  const [count, setCount] = useState(0);
   const {cart , addToCart , increase , decrease} = useContext (CartContextCard); 
 
   // function increase() {
@@ -97,18 +96,18 @@ const SinglePage = () => {
             cart.find((el) => el.id === item.id) ?   <div className="flex items-center justify-center gap-5 w-full h-full h-[60px] border-[2px] border-[#E4E7E9] rounded-[3px] ">
             <button
               onClick={() => decrease(item)}
-              className="text-[24px] font-bold cursor-pointer text-white bg-[red] w-full py-[10px]"
+              className="text-[24px] font-bold cursor-pointer text-white bg-[#FA8232] w-full py-[10px]"
             >
               -
             </button>
-            <span className="text-[20px] font-bold py-[10px]">
+            <span className="text-[24px] font-bold py-[10px]">
               {
                 cart?.find((el) => el.id === item.id).qty
               }
               </span>
             <button
               onClick={() => increase(item)}
-              className="text-[24px] font-bold cursor-pointer w-full text-white py-[10px] bg-[green]"
+              className="text-[24px] font-bold cursor-pointer w-full  py-[10px] text-white bg-[#FA8232]"
             >
               +
             </button>
@@ -128,7 +127,7 @@ const SinglePage = () => {
       </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 pb-5">
         {item.reviews.map((el) => (
           <div
             className="border-2 border-gray-400 rounded-2xl p-6 md:p-10 w-full"

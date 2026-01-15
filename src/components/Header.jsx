@@ -3,7 +3,7 @@ import { CiFacebook, CiLocationOn } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FiSearch, FiHeart, FiUser } from "react-icons/fi";
 import { SlBasket, SlSocialTwitter, SlSocialYoutube } from "react-icons/sl";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { LikeProductContext } from "../context/LikeContext";
 import { CartContextCard } from "../hooks/CartContext";
 import useGet from "../hooks/useGet";
@@ -15,6 +15,7 @@ const Header = () => {
   const { data } = useGet({ url: `products/search?q=${search}&limit=194` });
   const products = data?.data?.products;
   console.log(products);
+  const navigate = useNavigate();
 
   //   useEffect(() => {
   //   const fetchData = async () => {
@@ -71,6 +72,7 @@ const Header = () => {
               <input
                 onChange={(e) => setSearch(e.target.value)}
                 type="search"
+                value={search}
                 placeholder="Search for anything..."
                 className="flex-1 px-4 py-2 outline-none"
               />
@@ -81,12 +83,9 @@ const Header = () => {
 
             {search && (
               <div className="absolute top-full left-0 w-full bg-white shadow-2xl rounded-2xl mt-2 p-3 flex flex-col gap-2 z-50 max-h-[400px] overflow-y-scroll">
-                {
-                  products.length > 0 ? products?.map((el) => (
-                  <Link to={`/products/${el.id}`}
-                    key={el.id}
-                    className="border border-gray-400 rounded-xl p-3 flex items-center gap-4 hover:bg-gray-50 cursor-pointer"
-                  >
+                 { products.length > 0 ? products?.map((el) => 
+                  ( 
+                  <button onClick={() => navigate(`/products/${el.id}`)} key={el.id} className="border border-gray-400 rounded-xl p-3 flex items-center gap-4 hover:bg-gray-50 cursor-pointer" >
                     <img
                       className="w-[80px] h-[80px] object-contain"
                       src={el.thumbnail}
@@ -98,7 +97,7 @@ const Header = () => {
                         {el.description}
                       </p>
                     </div>
-                  </Link>
+                  </button>
                 )) : <div className="text-center text-[24px] font-bold">No products found 🙁</div>
                 }
               </div>
@@ -106,6 +105,7 @@ const Header = () => {
           </div>
 
           <div className="relative hidden sm:flex items-center gap-5 text-white text-xl ">
+            <NavLink to={"products"} className="bg-gray-400 p-2 cursor-pointer ">All Category</NavLink>
             <NavLink className="hidden md:block" to={"/cart"}>
               <SlBasket className="text-[32px] " />{" "}
               <span className="absolute bottom-4 bg-blue-500 w-[25px] h-[25px] flex items-center justify-center rounded-full right-22">

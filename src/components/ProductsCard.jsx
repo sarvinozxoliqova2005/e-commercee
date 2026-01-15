@@ -14,7 +14,7 @@ const ProductsCard = ({ el }) => {
   return (
     <div
       key={el.id}
-      className="relative w-full max-w-[480px] max-[600px]:max-w-[320px]
+      className="relative w-full max-w-[480px] max-[600px]:max-w-[320px] border-2 border-gray-400
              h-[255px] max-[600px]:h-[320px]
              border shadow-2xl rounded-md mx-auto"
     >      <div className="relative group flex items-center justify-center ">
