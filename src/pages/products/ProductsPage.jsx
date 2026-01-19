@@ -11,13 +11,15 @@ const ProductsPage = () => {
   const pageNumbers = [];
   const [page , setPage] = useState ([]);
   const [active , setActive] = useState(1);
+  const [category, setCategory] = useState("");
+  
   
   const {data} = useGet({url: "products/category-list"})
   const categories = data.data;
 
   async function getData () {
     try {
-      const res = await axios.get (`https://dummyjson.com/products?limit=20&skip=${skip}`)
+      const res = await axios.get (`https://dummyjson.com/products/${category ? `category/${category}` : ""}?limit=20&skip=${skip}`)
       setProdutcs(res?.data?.products);
       setTotal(res.data.total)
     } catch (error) {
@@ -30,7 +32,7 @@ const ProductsPage = () => {
 
   useEffect (() => {
     getData()
-  } , [skip] )
+  } , [skip , category] )
 
   for (let i = 1; i <= countPagination; i++) {
     pageNumbers.push(i);
@@ -42,7 +44,7 @@ const ProductsPage = () => {
         <aside className="max-w-[312px] border-[2px] border-gray-300 fixed top-[165px] pt-[30px] w-full">
           <div className="px-5">
             <h1 className="text-[24px] font-bold">Category</h1>
-            <ul className="mt-5 flex flex-col gap-3 h-[300px] overflow-y-scroll">
+            <ul className="mt-5 flex flex-col gap-3 h-screen pb-[280px] overflow-y-scroll">
               {
                 categories?.map((el) => (
                   <li className="flex gap-3">
@@ -52,6 +54,8 @@ const ProductsPage = () => {
                   id={el}
                   type="radio"
                   placeholder=""
+                  value={el}
+                  onChange={(e) => setCategory(e.target.value)}
                 />
                 <label className="text-[20px] font-bold" htmlFor={el}>
                   {el}
@@ -67,7 +71,7 @@ const ProductsPage = () => {
             <ProductsCard el={el} />
           ))}
         </div>
-        <div className="flex items-center justify-center mt-10 gap-2">
+        <div className="flex items-center ml-[430px] justify-center mb-10 mt-10 gap-2">
          {
           skip === 0 ? "" :  <button  
            onClick={() => setSkip((prev) => prev - 20) } className="bg-blue-500  font-bold px-5 py-2 text-[24px] text-white rounded-lg cursor-pointer">
